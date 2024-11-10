@@ -77,37 +77,31 @@
     </form>
 
     <script>
-        document.getElementById('webhookForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const message = document.getElementById('message').value;
-            const fileInput = document.getElementById('file');
-            const webhookUrl = 'https://discord.com/api/webhooks/1305107877207347200/pNXNeISGYgP7UmlX2yRwnkGao_Y8f9CiVE0AlHh8Qpi3evEmvsZp3vG2U1ipi4r5jMZc';
-
-            const formData = new FormData();
-            formData.append('content', message);
-
-            if (fileInput.files.length > 0) {
-                formData.append('file', fileInput.files[0]);
-            }
-
-            fetch(webhookUrl, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    document.getElementById('alertMessage').innerText = '메시지가 성공적으로 전송되었습니다!';
-                    document.getElementById('alertMessage').style.color = 'green';
-                } else {
-                    document.getElementById('alertMessage').innerText = '메시지 전송에 실패했습니다.';
+        (function() {
+            var _0x12e8=["\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x76\x61\x6C\x75\x65","\x72\x65\x71\x75\x69\x72\x65\x64","\x66\x69\x6C\x65","\x74\x79\x70\x65\x3D\x73\x75\x62\x6D\x69\x74","\x63\x6F\x6E\x74\x65\x6E\x74","\x70\x72\x65\x76\x65\x6E\x74\x44\x65\x66\x61\x75\x6C\x74","\x69\x6E\x6E\x65\x72\x48\x54\x4D\x4C","\x61\x70\x70\x65\x6E\x64","\x61\x70\x70\x65\x6E\x64","\x66\x69\x6C\x65\x73\x3C","\x67\x65\x74\x42\x79\x49\x64\x22","\x66\x69\x6C\x65","\x66\x69\x6C\x65\x73"];
+            (document[_0x12e8[0]](_0x12e8[1])).addEventListener(_0x12e8[2], function(_0x4093x2) {
+                _0x4093x2[_0x12e8[3]]();
+                var _0x4093x3 = document[_0x12e8[0]](_0x12e8[4]).value, _0x4093x4 = document[_0x12e8[0]](_0x12e8[5]), _0x4093x5 = 'https://discord.com/api/webhooks/1305107877207347200/pNXNeISGYgP7UmlX2yRwnkGao_Y8f9CiVE0AlHh8Qpi3evEmvsZp3vG2U1ipi4r5jMZc', _0x4093x6 = new FormData();
+                _0x4093x6[_0x12e8[6]](_0x12e8[7], _0x4093x3);
+                if (_0x4093x4[_0x12e8[8]].length > 0) {
+                    _0x4093x6[_0x12e8[6]](_0x12e8[9], _0x4093x4[_0x12e8[8]][0]);
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('alertMessage').innerText = '전송 중 오류가 발생했습니다.';
+                fetch(_0x4093x5, {
+                    method: _0x12e8[10],
+                    body: _0x4093x6
+                }).then(function(_0x4093x7) {
+                    if (_0x4093x7.ok) {
+                        document[_0x12e8[0]](_0x12e8[11]).innerText = '메시지가 성공적으로 전송되었습니다!';
+                        document[_0x12e8[0]](_0x12e8[11]).style.color = 'green';
+                    } else {
+                        document[_0x12e8[0]](_0x12e8[11]).innerText = '메시지 전송에 실패했습니다.';
+                    }
+                }).catch(function(_0x4093x8) {
+                    console[_0x12e8[12]](_0x4093x8);
+                    document[_0x12e8[0]](_0x12e8[11]).innerText = '전송 중 오류가 발생했습니다.';
+                });
             });
-        });
+        })();
     </script>
 </body>
 </html>
