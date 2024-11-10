@@ -3,56 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>간단한 페이지</title>
+    <title>디스코드 웹훅 전송</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-        main {
             padding: 20px;
         }
-        footer {
-            background-color: #333;
-            color: white;
+
+        h1 {
             text-align: center;
-            padding: 10px;
-            position: fixed;
+            color: #7289da;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            margin-bottom: 8px;
+            display: block;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="file"] {
             width: 100%;
-            bottom: 0;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #7289da;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #5b6eae;
+        }
+
+        .alert {
+            text-align: center;
+            margin-top: 10px;
+            color: red;
         }
     </style>
 </head>
 <body>
+    <h1>디스코드 웹훅 메시지 전송</h1>
+    <form id="webhookForm">
+        <label for="message">메시지:</label>
+        <input type="text" id="message" name="message" required>
+        
+        <label for="file">파일 업로드:</label>
+        <input type="file" id="file" name="file">
+        
+        <button type="submit">전송</button>
+        <div class="alert" id="alertMessage"></div>
+    </form>
 
-    <header>
-        <h1>환영합니다!</h1>
-        <p>간단한 페이지에 오신 것을 환영합니다.</p>
-    </header>
+    <script>
+        document.getElementById('webhookForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-    <main>
-        <h2>소개</h2>
-        <p>이 페이지는 기본적인 HTML과 CSS를 사용하여 만들어졌습니다. 간단한 예제이지만 웹페이지 구조를 이해하는 데 도움이 됩니다.</p>
+            const message = document.getElementById('message').value;
+            const fileInput = document.getElementById('file');
+            const webhookUrl = 'https://discord.com/api/webhooks/1305107877207347200/pNXNeISGYgP7UmlX2yRwnkGao_Y8f9CiVE0AlHh8Qpi3evEmvsZp3vG2U1ipi4r5jMZc';
 
-        <h3>기능</h3>
-        <ul>
-            <li>헤더, 본문, 푸터로 구성된 간단한 레이아웃</li>
-            <li>배경색과 텍스트 색상을 활용한 스타일링</li>
-            <li>고정된 푸터</li>
-        </ul>
-    </main>
+            const formData = new FormData();
+            formData.append('content', message);
 
-    <footer>
-        <p>2024 © 간단한 페이지</p>
-    </footer>
+            if (fileInput.files.length > 0) {
+                formData.append('file', fileInput.files[0]);
+            }
 
+            fetch(webhookUrl, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('alertMessage').innerText = '메시지가 성공적으로 전송되었습니다!';
+                    document.getElementById('alertMessage').style.color = 'green';
+                } else {
+                    document.getElementById('alertMessage').innerText = '메시지 전송에 실패했습니다.';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('alertMessage').innerText = '전송 중 오류가 발생했습니다.';
+            });
+        });
+    </script>
 </body>
 </html>
