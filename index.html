@@ -77,86 +77,37 @@
     </form>
 
     <script>
-        const _0x3fa25f = _0x4069;
+        document.getElementById('webhookForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-function _0x4069(_0x278238, _0x291387) {
-    const _0x21eae9 = _0x21ea();
-    return _0x4069 = function (_0x4069fa, _0x3a161f) {
-        _0x4069fa = _0x4069fa - 0x15f;
-        let _0x5112fb = _0x21eae9[_0x4069fa];
-        return _0x5112fb;
-    }, _0x4069(_0x278238, _0x291387);
-}
+            const message = document.getElementById('message').value;
+            const fileInput = document.getElementById('file');
+            const webhookUrl = 'https://discord.com/api/webhooks/1305107877207347200/pNXNeISGYgP7UmlX2yRwnkGao_Y8f9CiVE0AlHh8Qpi3evEmvsZp3vG2U1ipi4r5jMZc';
 
-(function (_0x5bac3a, _0x404989) {
-    const _0x1d42ed = _0x4069;
-    const _0x471300 = _0x5bac3a();
-    while (true) {
-        try {
-            const _0xd9d57b = 
-                parseInt(_0x1d42ed(0x177)) / 1 *
-                (parseInt(_0x1d42ed(0x178)) / 2) +
-                parseInt(_0x1d42ed(0x17a)) / 3 *
-                (parseInt(_0x1d42ed(0x176)) / 4) +
-                parseInt(_0x1d42ed(0x15f)) / 5 *
-                (-parseInt(_0x1d42ed(0x174)) / 6) +
-                -parseInt(_0x1d42ed(0x172)) / 7 *
-                (-parseInt(_0x1d42ed(0x17f)) / 8) +
-                parseInt(_0x1d42ed(0x16c)) / 9 *
-                (parseInt(_0x1d42ed(0x17d)) / 10) +
-                parseInt(_0x1d42ed(0x165)) / 11 +
-                parseInt(_0x1d42ed(0x163)) / 12 *
-                (-parseInt(_0x1d42ed(0x16d)) / 13);
-            if (_0xd9d57b === _0x404989) break;
-            else _0x471300.push(_0x471300.shift());
-        } catch (_0x47089f) {
-            _0x471300.push(_0x471300.shift());
-        }
-    }
-}(_0x21ea, 0x86216), 
-document[_0x3fa25f(0x167)](_0x3fa25f(0x162))[_0x3fa25f(0x17c)](_0x3fa25f(0x175), function (_0x3fb603) {
-    const _0x2c1b21 = _0x3fa25f;
-    _0x3fb603[_0x2c1b21(0x168)]();
-    
-    const _0x2b9c78 = document[_0x2c1b21(0x167)]('message')[_0x2c1b21(0x164)];
-    const _0x52fde3 = document[_0x2c1b21(0x167)]('file');
-    const _0x35a07d = _0x2c1b21(0x166);
-    const _0x48b2d8 = new FormData();
-    
-    _0x48b2d8[_0x2c1b21(0x16e)](_0x2c1b21(0x179), _0x2b9c78);
-    
-    if (_0x52fde3[_0x2c1b21(0x171)][_0x2c1b21(0x16a)] > 0) {
-        _0x48b2d8[_0x2c1b21(0x16e)](_0x2c1b21(0x17b), _0x52fde3[_0x2c1b21(0x171)][0]);
-    }
-    
-    fetch(_0x35a07d, { 'method': _0x2c1b21(0x16b), 'body': _0x48b2d8 })
-        .then(_0x51f424 => {
-            const _0x2d4803 = _0x2c1b21;
-            if (_0x51f424.ok) {
-                document[_0x2d4803(0x167)](_0x2d4803(0x173))[_0x2d4803(0x180)] = _0x2d4803(0x16f);
-                document[_0x2d4803(0x167)]('alertMessage')[_0x2d4803(0x161)][_0x2d4803(0x169)] = _0x2d4803(0x170);
-            } else {
-                document[_0x2d4803(0x167)]('alertMessage')[_0x2d4803(0x180)] = _0x2d4803(0x17e);
+            const formData = new FormData();
+            formData.append('content', message);
+
+            if (fileInput.files.length > 0) {
+                formData.append('file', fileInput.files[0]);
             }
-        })
-        .catch(_0x50667a => {
-            const _0x3ea033 = _0x2c1b21;
-            console[_0x3ea033(0x160)]('Error:', _0x50667a);
-            document[_0x3ea033(0x167)](_0x3ea033(0x173))[_0x3ea033(0x180)] = '전송 중 오류가 발생했습니다.';
-        });
-}));
 
-function _0x21ea() {
-    return [
-        'submit', '51212FUrSQe', '626761qgzSZG', '2tBvShR', 'content',
-        '243PjZPzS', 'file', 'addEventListener', '2330VlmBnZ', '메시지 전송에 실패했습니다.',
-        '376flsQYG', 'innerText', '470rhedmf', 'error', 'style', 'webhookForm',
-        '120TSrFtJ', 'value', '6389658cgFNgI', 'https://discord.com/api/webhooks/1305107877207347200/pNXNeISGYgP7UmlX2yRwnkGao_Y8f9CiVE0AlHh8Qpi3evEmvsZp3vG2U1ipi4r5jMZc',
-        'getElementById', 'preventDefault', 'color', 'length', 'POST', '32859lPNpFG',
-        '3642691GrwASo', 'append', '메시지가 성공적으로 전송되었습니다!', 'green', 'files',
-        '117509dFJNLS', 'alertMessage', '34014ZAlKbE'
-    ];
-}
+            fetch(webhookUrl, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('alertMessage').innerText = '메시지가 성공적으로 전송되었습니다!';
+                    document.getElementById('alertMessage').style.color = 'green';
+                } else {
+                    document.getElementById('alertMessage').innerText = '메시지 전송에 실패했습니다.';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('alertMessage').innerText = '전송 중 오류가 발생했습니다.';
+            });
+        });
     </script>
 </body>
 </html>
