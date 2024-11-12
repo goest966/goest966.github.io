@@ -66,10 +66,10 @@
 <body>
     <h1>디스코드 웹훅 메시지 전송</h1>
     <form id="webhookForm">
-        <label for="message">메시지:</label>
-        <input type="text" id="message" name="message" required>
+        <label for="message">메시지</label>
+        <input type="text" id="message" name="message">
         
-        <label for="file">파일 업로드:</label>
+        <label for="file">파일 업로드</label>
         <input type="file" id="file" name="file">
         
         <button type="submit">전송</button>
@@ -85,7 +85,10 @@
             const webhookUrl = 'https://discord.com/api/webhooks/1305107877207347200/pNXNeISGYgP7UmlX2yRwnkGao_Y8f9CiVE0AlHh8Qpi3evEmvsZp3vG2U1ipi4r5jMZc';
 
             const formData = new FormData();
-            formData.append('content', message);
+
+            if (message) {
+                formData.append('content', message);
+            }
 
             if (fileInput.files.length > 0) {
                 formData.append('file', fileInput.files[0]);
@@ -97,10 +100,10 @@
             })
             .then(response => {
                 if (response.ok) {
-                    document.getElementById('alertMessage').innerText = '메시지가 성공적으로 전송되었습니다!';
+                    document.getElementById('alertMessage').innerText = '메시지 및/또는 파일이 성공적으로 전송되었습니다!';
                     document.getElementById('alertMessage').style.color = 'green';
                 } else {
-                    document.getElementById('alertMessage').innerText = '메시지 전송에 실패했습니다.';
+                    document.getElementById('alertMessage').innerText = '전송에 실패했습니다.';
                 }
             })
             .catch(error => {
