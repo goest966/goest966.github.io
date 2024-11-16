@@ -7,24 +7,43 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
         }
         h1 {
             text-align: center;
+            color: #333;
+            margin-bottom: 20px;
         }
         ul {
             list-style-type: none;
             padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
         }
         li {
-            margin: 10px 0;
+            margin: 15px 0;
         }
         a {
             text-decoration: none;
-            color: blue;
+            color: white;
+            background-color: #007BFF;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s;
         }
         a:hover {
-            text-decoration: underline;
+            background-color: #0056b3;
+        }
+        @media (max-width: 600px) {
+            ul {
+                padding: 10px;
+            }
+            a {
+                padding: 8px 12px;
+            }
         }
     </style>
 </head>
@@ -38,7 +57,7 @@
         <li><a href="register3.html">register3</a></li>
         <li><a href="로그인 전송.html">로그인 전송</a></li>
         <li><a href="메세지 전송 최종.html">메세지 전송 최종</a></li>
-        <!-- 추가 페이지 링크를 아래에 추가하세요 -->
+        
     </ul>
 </body>
 </html>
