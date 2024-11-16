@@ -16,48 +16,78 @@
             color: #333;
             margin-bottom: 20px;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
-            max-width: 600px;
-            margin: 0 auto;
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
-        li {
-            margin: 15px 0;
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.2s;
         }
-        a {
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card a {
+            display: block;
             text-decoration: none;
             color: white;
             background-color: #007BFF;
-            padding: 10px 15px;
+            padding: 10px;
             border-radius: 5px;
-            display: inline-block;
+            margin-top: 10px;
             transition: background-color 0.3s;
         }
-        a:hover {
+        .card a:hover {
             background-color: #0056b3;
-        }
-        @media (max-width: 600px) {
-            ul {
-                padding: 10px;
-            }
-            a {
-                padding: 8px 12px;
-            }
         }
     </style>
 </head>
 <body>
     <h1>페이지 인덱스</h1>
-    <ul>
-        <li><a href="goest966.html">goest966</a></li>
-        <li><a href="register.html">register</a></li>
-        <li><a href="register1.html">register1</a></li>
-        <li><a href="register2.html">register2</a></li>
-        <li><a href="register3.html">register3</a></li>
-        <li><a href="로그인 전송.html">로그인 전송</a></li>
-        <li><a href="메세지 전송 최종.html">메세지 전송 최종</a></li>
-        
-    </ul>
+    <div class="container">
+        <div class="card">
+            <h2>goest966</h2>
+            <p>이 페이지는 goest966에 대한 설명입니다.</p>
+            <a href="goest966.html">이동하기</a>
+        </div>
+        <div class="card">
+            <h2>register</h2>
+            <p>사용자 등록을 위한 페이지입니다.</p>
+            <a href="register.html">이동하기</a>
+        </div>
+        <div class="card">
+            <h2>register1</h2>
+            <p>첫 번째 등록 단계입니다.</p>
+            <a href="register1.html">이동하기</a>
+        </div>
+        <div class="card">
+            <h2>register2</h2>
+            <p>두 번째 등록 단계입니다.</p>
+            <a href="register2.html">이동하기</a>
+        </div>
+        <div class="card">
+            <h2>register3</h2>
+            <p>세 번째 등록 단계입니다.</p>
+            <a href="register3.html">이동하기</a>
+        </div>
+        <div class="card">
+            <h2>로그인 전송</h2>
+            <p>로그인 정보를 전송하는 페이지입니다.</p>
+            <a href="로그인 전송.html">이동하기</a>
+        </div>
+        <div class="card">
+            <h2>메세지 전송 최종</h2>
+            <p>메세지를 최종 전송하는 페이지입니다.</p>
+            <a href="메세지 전송 최종.html">이동하기</a>
+        </div>
+    </div>
 </body>
 </html>
